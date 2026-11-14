@@ -129,6 +129,18 @@ def login():
 @app.route("/api/logout", methods=["POST"])
 def logout():
     session.clear(); return jsonify({"ok":True})
+@app.route("/api/me")
+def me():
+    if session.get("uid"):
+        return jsonify({
+            "logged_in": True,
+            "username": session.get("username")
+        })
+
+    return jsonify({
+        "logged_in": False,
+        "username": None
+    })
 
 @app.route("/api/bookmarks", methods=["GET","POST","DELETE"])
 @login_required
