@@ -1,6 +1,81 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Prelims 360° | UPSC CSE 2027</title><link rel="stylesheet" href="/static/style.css"></head>
-<body><aside class="sidebar"><div class="brand"><span class="emblem">✦</span><div><b>PRELIMS 360°</b><small>UPSC CSE • 2027</small></div></div><nav>
-<button class="nav active" data-page="dashboard">▦ Dashboard</button><button class="nav" data-page="pyqs">▤ PYQ Library</button><button class="nav" data-page="analysis">◷ Trend Analysis</button><button class="nav" data-page="static">⌕ Static Encyclopedia</button><button class="nav" data-page="affairs">◉ Daily Current Affairs</button><button class="nav" data-page="quiz">✓ Daily Quiz</button><button class="nav" data-page="csat">∑ CSAT Corner</button><button class="nav" data-page="revision">☆ Bookmarks & Notes</button><button class="nav" data-page="progress">▥ Progress Tracker</button></nav><div class="side-bottom"><span class="live-dot"></span> Study workspace <small>Built for focused preparation</small></div></aside>
-<main><header><div><div class="eyebrow">CIVIL SERVICES EXAMINATION</div><h1 id="pageTitle">Your preparation, in one place.</h1><p id="pageSub">A structured workspace for UPSC CSE Prelims 2027.</p></div><div class="header-actions"><span class="date" id="today"></span><button class="outline" onclick="openAuth()">Sign in</button></div></header>
-<section id="content"></section><footer>PRELIMS 360° <span>Accuracy first · Official sources · Conceptual clarity</span></footer></main><div id="toast"></div><dialog id="auth"><form method="dialog"><button class="x" aria-label="Close">×</button></form><h2>Your study account</h2><p>Save bookmarks, notes and quiz progress across sessions.</p><input id="username" placeholder="Username"><input id="password" type="password" placeholder="Password (8+ characters)"><div class="auth-actions"><button onclick="authAction('login')">Sign in</button><button class="outline" onclick="authAction('register')">Create account</button></div><small id="authMsg">Your data is stored in this app's SQLite database.</small></dialog>
-<script src="/static/app.js"></script></body></html>
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prelims 360° | UPSC CSE 2027</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<aside class="sidebar">
+<div class="brand">
+<span class="emblem">✦</span>
+<div><b>PRELIMS 360°</b><small>UPSC CSE • 2027</small></div>
+</div>
+
+<nav>
+<button class="nav active" data-page="dashboard">▦ Dashboard</button>
+<button class="nav" data-page="pyqs">▤ PYQ Library</button>
+<button class="nav" data-page="analysis">◷ Trend Analysis</button>
+<button class="nav" data-page="static">⌕ Static Encyclopedia</button>
+<button class="nav" data-page="affairs">◉ Daily Current Affairs</button>
+<button class="nav" data-page="quiz">✓ Daily Quiz</button>
+<button class="nav" data-page="csat">∑ CSAT Corner</button>
+<button class="nav" data-page="revision">☆ Bookmarks & Notes</button>
+<button class="nav" data-page="progress">▥ Progress Tracker</button>
+</nav>
+
+<div class="side-bottom">
+<span class="live-dot"></span> Study workspace
+<small>Built for focused preparation</small>
+</div>
+</aside>
+
+<main>
+<header>
+<div>
+<div class="eyebrow">CIVIL SERVICES EXAMINATION</div>
+<h1 id="pageTitle">Your preparation, in one place.</h1>
+<p id="pageSub">A structured workspace for UPSC CSE Prelims 2027.</p>
+</div>
+
+<div class="header-actions">
+<span class="date" id="today"></span>
+<button class="outline" id="authButton" onclick="authButtonClick()">Sign in</button>
+</div>
+</header>
+
+<section id="content"></section>
+
+<footer>
+PRELIMS 360°
+<span>Accuracy first · Official sources · Conceptual clarity</span>
+</footer>
+</main>
+
+<div id="toast"></div>
+
+<dialog id="auth">
+<form method="dialog">
+<button class="x" aria-label="Close">×</button>
+</form>
+
+<h2>Your study account</h2>
+<p>Save bookmarks, notes and quiz progress across sessions.</p>
+
+<input id="username" placeholder="Username">
+<input id="password" type="password" placeholder="Password (8+ characters)">
+
+<div class="auth-actions">
+<button type="button" onclick="authAction('login')">Sign in</button>
+<button type="button" class="outline" onclick="authAction('register')">Create account</button>
+</div>
+
+<small id="authMsg">Your data is stored in this app's SQLite database.</small>
+</dialog>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
