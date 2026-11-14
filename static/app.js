@@ -38,6 +38,31 @@ async function loadKeywords(){let q=$('#keywordQ')?.value||'';let rows=await api
 function renderQuiz(){let q=demoQuiz[quizIndex];let c=$('#content');$('#pageTitle').textContent='Daily Five-Question Quiz';$('#pageSub').textContent='A short practice set. Review every explanation after submitting.';c.innerHTML=`<div class="panel"><div class="row" style="justify-content:space-between"><span class="pill">Question ${quizIndex+1} of 5</span><span class="pill gold">Easy–Moderate</span></div><h2 style="margin:15px 0">${q.q}</h2>${q.o.map((o,i)=>`<label class="option"><input type="radio" name="answer" value="${'ABCD'[i]}" ${quizAnswers[q.id]==='ABCD'[i]?'checked':''} ${quizSubmitted?'disabled':''}>${'ABCD'[i]}. ${o}</label>`).join('')}<div class="row" style="margin-top:15px">${quizIndex>0?'<button class="outline" onclick="quizIndex--;renderQuiz()">Previous</button>':''}<button class="primary" onclick="submitQuiz()">${quizSubmitted?'Answer recorded':'Submit answer'}</button>${quizSubmitted&&quizIndex<4?'<button class="outline" onclick="quizIndex++;renderQuiz()">Next question →</button>':''}</div>${quizSubmitted?`<div class="answer ${quizAnswers[q.id]===q.a?'':'danger'}"><b>Correct answer: ${q.a}</b><p>${q.why}</p></div>`:''}</div>${quizSubmitted&&quizIndex===4?'<div class="item"><h3>Quiz complete</h3><p>Review your incorrect answers and revisit the linked static concepts.</p></div>':''}`}
 async function submitQuiz(){let q=demoQuiz[quizIndex],sel=document.querySelector('input[name=answer]:checked');if(!sel){toast('Choose an option first.');return}quizAnswers[q.id]=sel.value;quizSubmitted=true;renderQuiz();if(window.loggedIn){try{await api('/api/attempt',{method:'POST',body:JSON.stringify({question_id:q.id,answer:sel.value,correct:sel.value===q.a})})}catch(e){}}}
 async function saveNote(){try{await api('/api/notes',{method:'POST',body:JSON.stringify({title:$('#noteTitle').value,body:$('#noteBody').value})});toast('Note saved');render()}catch(e){toast(e.message)}}
-function openAuth(){$('#auth').showModal()}
+
+function openAuth() {
+    const modal = document.getElementById('auth');
+
+    if (!modal) {
+        alert('Login window not found. Please refresh.');
+        return;
+    }
+
+    try {
+        if (!modal.open) {
+            if (typeof modal.showModal === 'function') {
+                modal.showModal();
+            } else {
+                modal.setAttribute('open', '');
+                modal.style.display = 'block';
+            }
+        }
+    } catch (error) {
+        modal.setAttribute('open', '');
+        modal.style.display = 'block';
+    }
+}
+
+window.openAuth = openAuth;
+
 async function authAction(mode){try{let d=await api('/api/'+mode,{method:'POST',body:JSON.stringify({username:$('#username').value,password:$('#password').value})});window.loggedIn=true;$('#authMsg').textContent='Signed in as '+d.username;toast('Welcome, '+d.username);$('#auth').close();render()}catch(e){$('#authMsg').textContent=e.message}}
 render();
